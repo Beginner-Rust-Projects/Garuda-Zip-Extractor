@@ -4,6 +4,27 @@ use std::io; // For Read Write
 use std::path::Path; // For File Path Management
 use zip::ZipArchive; // For Reading Zip File
 use io::copy; // To Copy from one I/O Stream to other
+
+/*  Very Important! - This Zip Extractor can only extract upton the depth of 2, 
+i.e There can not be a nested folders inside of our Zip File.
+Look at the example zip provided for more clarification
+This Example Below is Okay
+archive.zip
+├── folder1/
+│   ├── file1.txt
+│   └── file2.txt
+└── folder2/
+    └── file3.txt
+But This Example Below is Not Okay
+archive.zip
+├── folder1/
+│   ├── file1.txt
+│   └── file2.txt
+└── folder2/
+    └── folder3/
+        └── file3.txt
+*/
+
 fn main() {
     // A Cleaner Way to Exit [Fancy]
     std::process::exit(zip_extractor()); //The Output of the function should be i32
